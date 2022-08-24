@@ -1,0 +1,12 @@
+#html基础部分
+
+<h1>This is a heading</h1>
+#标题 除此之外有<h2><h3>
+<p>This is a paragraph.</p>
+#段落 在段落中加上<br />是换行，加上<hr />是添加水平线（分割内容）
+<a href="http://www.baidu.com">This is a link</a>
+#html连接
+<img src="w3school.jpg" width="104" height="142" />
+#图片 后面的width和height是图片的属性
+<!-- This is a comment -->
+#注释
