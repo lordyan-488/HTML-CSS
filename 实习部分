@@ -1,0 +1,246 @@
+#html学习（实习部分）
+
+<html>
+<head>
+    <<html>
+<head>
+    <meta charset="utf-8">                                                           # 设置字符串属性
+    <title>dfx-cpu&ddr故障注入任务列表</title>                                         # 定义文档标题
+    <meta name="renderer" content="webkit">                                           # meta定义文档的元数据 （内核控制标签） 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">     # link标签引入外部css文件
+</head>
+<body>                                                                                 #网页内容
+<div class="layui-fluid">                                                              #div用来定义分区
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">                                              # class规定元素的类名，后面同上
+                <div class="layui-inline">
+                    <label class="layui-form-label">上传者</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="upload_name" placeholder="请输入" autocomplete="off" class="layui-input"># 输入框
+                    </div>
+                </div>
+                <div class="layui-inline">  
+                    <label class="layui-form-label">CPU类型</label>
+                    <div class="layui-input-inline">
+                        <select name="cpu_type">                                      # select和option：下拉菜单
+                            <option value="">请选择</option>
+                            {% for  key,value in cpu_type.items %}
+                                <option value={{ key }}>{{ value }}  </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">执行地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="address" placeholder="请输入" autocomplete="off" class="layui-input"># 设置输入框
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">上传时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" name="creat_time" id="test-laydate-range-datetime"
+                               placeholder=" - ">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" id='LAY-scripts-contlist-search' lay-submit lay-filter="LAY-scripts-contlist-search"># 设置一个按钮，（用layui的方式进行监听）
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+            </div>
+
+            <table id="LAY-scripts-content-list" lay-filter="LAY-scripts-content-list"></table>
+            <script type="text/html" id="toolbar">
+				<div class="layui-btn-container" >
+                    <button class="layui-btn layui-btn-sm" lay-event="upload_scripts">创建任务</button>
+                    <font size="2" color="#FF0000">注意：1.如果使用X86寄存器故障注入方式，还需将主程序版本更新为定制版本; 2.如果使用cavium寄存器故障注入方式，还需将texception.ko文件导入板卡的/data目录下，下载链接：ftp://bin:bin@172.30.72.88/texception.ko; 3.操作前须确认被连接设备无需用户名密码登录，否则执行会出错</font> 
+				</div>
+        
+        
+			</script>
+            
+            <script type="text/html" id="LAY-scripts-content-list">
+                {#                  {{d.LAY_TABLE_INDEX}}#}
+            </script>
+            <script type="text/html" id="table-content-list">
+{#                <a class="layui-btn  layui-btn-xs" lay-event="edit">详情</a>#}
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="fault_download">错误统计</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="session_download">执行日志</a>
+                <!-- <i class="layui-icon layui-icon-edit"></i> -->
+
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    if (window.top == self) {
+        location.href = '../user/login.html'
+    }
+</script>
+<script src="/static/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'dfx_cpu_ddr_task_list_manage', 'table', 'laydate'], function () {
+        var table = layui.table
+            , laydate = layui.laydate
+            , form = layui.form;
+
+        //日期时间范围
+        laydate.render({
+            elem: '#test-laydate-range-datetime'
+            , type: 'datetime'
+            , range: true
+        });
+
+        //监听搜索
+        form.on('submit(LAY-scripts-contlist-search)', function (data) {
+            var field = data.field;
+            //执行重载
+            table.reload('LAY-scripts-content-list', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: field
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>
+="utf-8">
+    <title>dfx-cpu&ddr故障注入任务列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">上传者</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="upload_name" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">  
+                    <label class="layui-form-label">CPU类型</label>
+                    <div class="layui-input-inline">
+                        <select name="cpu_type">
+                            <option value="">请选择</option>
+                            {% for  key,value in cpu_type.items %}
+                                <option value={{ key }}>{{ value }}  </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">执行地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="address" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">上传时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" name="creat_time" id="test-laydate-range-datetime"
+                               placeholder=" - ">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-list" id='LAY-scripts-contlist-search' lay-submit lay-filter="LAY-scripts-contlist-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+            </div>
+
+            <table id="LAY-scripts-content-list" lay-filter="LAY-scripts-content-list"></table>
+            <script type="text/html" id="toolbar">
+				<div class="layui-btn-container" >
+                    <button class="layui-btn layui-btn-sm" lay-event="upload_scripts">创建任务</button>
+                    <font size="2" color="#FF0000">注意：1.如果使用X86寄存器故障注入方式，还需将主程序版本更新为定制版本; 2.如果使用cavium寄存器故障注入方式，还需将texception.ko文件导入板卡的/data目录下，下载链接：ftp://bin:bin@172.30.72.88/texception.ko; 3.操作前须确认被连接设备无需用户名密码登录，否则执行会出错</font> 
+				</div>
+			</script>
+            
+            <script type="text/html" id="LAY-scripts-content-list">
+                {#                  {{d.LAY_TABLE_INDEX}}#}
+            </script>
+            <script type="text/html" id="table-content-list">
+{#                <a class="layui-btn  layui-btn-xs" lay-event="edit">详情</a>#}
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="fault_download">错误统计</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="session_download">执行日志</a>
+                <!-- <i class="layui-icon layui-icon-edit"></i> -->
+
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<script>    #js文代码部分
+    if (window.top == self) {
+        location.href = '../user/login.html'
+    }
+</script>
+<script src="/static/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'dfx_cpu_ddr_task_list_manage', 'table', 'laydate'], function () {
+        var table = layui.table
+            , laydate = layui.laydate
+            , form = layui.form;
+
+        //日期时间范围
+        laydate.render({
+            elem: '#test-laydate-range-datetime'
+            , type: 'datetime'
+            , range: true
+        });
+
+        //监听搜索
+        form.on('submit(LAY-scripts-contlist-search)', function (data) {
+            var field = data.field;
+            //执行重载
+            table.reload('LAY-scripts-content-list', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: field
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>

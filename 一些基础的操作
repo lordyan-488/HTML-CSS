@@ -1,12 +1,63 @@
-#html基础部分
+# html基础部分
 
 <h1>This is a heading</h1>
-#标题 除此之外有<h2><h3>
+# 标题 除此之外有<h2><h3>
+
 <p>This is a paragraph.</p>
-#段落 在段落中加上<br />是换行，加上<hr />是添加水平线（分割内容）
+# 段落 在段落中加上<br />是换行，加上<hr />是添加水平线（分割内容）
+
 <a href="http://www.baidu.com">This is a link</a>
-#html连接
-<img src="w3school.jpg" width="104" height="142" />
-#图片 后面的width和height是图片的属性
+# html连接（不一定是另一个网页，图片、邮箱、超链接，都可以用href）
+
+<img src="lordyan.jpg" alt="abc"  width="104" height="142" />
+<a herf="http://www.baidu.com"><img border="0" src="lordyan.gif" alt="加载失败" width="10" height="10"></a></p>
+# 图片超链接，border为显示边框，此外还可以用<area>定义图像中的可点击区域，并且可以设置多个area
+# 图片 后面的width和height是图片的属性，alt表示替换文本，即在图片加载失败时候的显示信息
+
 <!-- This is a comment -->
-#注释
+# 注释
+
+<head></head>
+# html头部，在此处声明头部标签<title><style><meta><link><script><base>
+# 这一部分可以在实习项目里看到具体的使用方法
+
+<body></body># html文档的主体（页面显示部分）
+
+<table border="1">   # border用来定义边框，不写就没有边框
+  <tr>               # 列
+    <th></th>        # 行
+    <th></th>        # 标题
+    <td></td>        # 文本
+  </tr>
+ # 具体操作可以看表格的damo
+
+html文本格式化标签：
+<b>          定义粗体
+<em>         定义着重文字
+<i>          定义斜体字
+<small>      定义小号字
+<strong>     定义加重语气
+<sub>        上标
+<suq>        下标
+<ins>        定义插入字
+<del>        定义删除字
+
+html引文、引用、及标签定义
+<abbr>       定义缩写
+<address>    定义地址
+<bdo>        定义文字方向
+<blockquote> 定义常引用
+<q>          定义短的引用语
+<cite>       定义引用引证
+<dfn>        定义一个定义项目
+
+
+
+
+
+
+
+
+
+
+
