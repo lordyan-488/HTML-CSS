@@ -59,9 +59,72 @@ html区块：
 <div># 块级元素，一般用于组合其他html元素的容器（可以看实习的damo里，用到了好多<div>）
 <span># 内联元素（实习damo里也有遇到）
 
+html表单输入：
+（项目里有个比较详细的damo可以参考）
+输入框：Username: <input type="text" name="user"><br>
+密码输入框：Password: <input type="password" name="password">
+单选按钮：
+<form action="">
+<input type="radio" name="sex" value="male">男<br>
+<input type="radio" name="sex" value="female">女
+</form>
+多选按钮：
+<form>
+<input type="checkbox" name="vehicle" value="Bike">我喜欢自行车<br>
+<input type="checkbox" name="vehicle" value="Car">我喜欢小汽车
+</form>
+提交按钮：
+<form name="input" action="html_form_action.php" method="get">
+Username: <input type="text" name="user">
+<input type="submit" value="Submit">
+</form>
+一个利用表单发送邮件的damo：
+<html>
+  <head> 
+    <meta charset="utf-8"> 
+    <title>菜鸟教程(runoob.com)</title> 
+  </head>
+  <body>
+
+    <h3>发送邮件到 someone@example.com:</h3>
+
+    <form action="MAILTO:someone@example.com" method="post" enctype="text/plain">
+      Name:<br>
+      <input type="text" name="name" value="your name"><br>
+      E-mail:<br>
+      <input type="text" name="mail" value="your email"><br>
+      Comment:<br>
+      <input type="text" name="comment" value="your comment" size="50"><br><br>
+      <input type="submit" value="发送">
+      <input type="reset" value="重置">
+    </form>
+
+  </body>
+</html>
+<from>       # 定义供用户输入的表单
+<input>	     # 定义输入域
+<textarea>   # 定义文本域 (一个多行的输入控件)
+<label>	     # 定义了 <input> 元素的标签，一般为输入标题
+<fieldset>   #	定义了一组相关的表单元素，并使用外框包含起来
+<legend>     #	定义了 <fieldset> 元素的标题
+<select>	   # 定义了下拉选项列表
+<optgroup>   #	定义选项组
+<option>	   # 定义下拉列表中的选项
+<button>	   # 定义一个点击按钮
+<datalist>   #	指定一个预先定义的输入控件选项列表
+<keygen>     #	定义了表单的密钥对生成器字段
+<output>     #	定义一个计算结果
 
 
+框架： 
+<iframe loading="lazy" src="demo_iframe.htm" width="200" height="200"></iframe>
 
+颜色：
+<p style="background-color:rgba(255,255,0,0.75)">
+通过 rbg 值设置背景颜色，最后一位是透明度（颜色可以用rgb表示，也可以用十六进制数表示）
+
+script标签：
+<script></script> # 这一部分用于写js语言
 
 
 
