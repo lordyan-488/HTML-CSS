@@ -187,3 +187,60 @@ damo5：分组嵌套
 		<p class="marked">带下划线的 p 段落。</p>
 	</body>
 </html>
+
+#边框以及在边框之间添加空间
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 106px;
+}
+</style>
+</head>
+<body>
+
+<h1>padding 属性</h1>
+<p>这个属性在表格的内容与边框之间添加空间。</p>
+
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>Bill</td>
+    <td>Gates</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>Steve</td>
+    <td>Jobs</td>
+    <td>$150</td>
+  </tr>
+  <tr>
+    <td>Elon</td>
+    <td>Musk</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Mark</td>
+    <td>Zuckerberg</td>
+    <td>$250</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
